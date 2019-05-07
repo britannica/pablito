@@ -1,8 +1,7 @@
 # Pablito
 An HTML 5 drawing tool based largely off existing tools.
-### by Britannica
 
-This package makes use of [fabricjs-webpack](https://github.com/fabricjs/fabricjs-webpack) and [Canvas-Drawing-Tool](https://github.com/pbs/Canvas-Drawing-Tool). It now uses Webpack 4, and imports, no more scripts in the header. This was easier than forking the original tool and updating the tooling.
+This package makes use of [fabricjs-webpack](https://github.com/fabricjs/fabricjs-webpack) and [Canvas-Drawing-Tool](https://github.com/pbs/Canvas-Drawing-Tool). It now uses Webpack 4, and imports, no more scripts in the header. This was easier than forking the original tool and updating the tooling. Please note that a large portion of this read-me is taken directly from the [Canvas-Drawing-Tool](https://github.com/pbs/Canvas-Drawing-Tool) repository.
 
 ## Basic Usage
 
