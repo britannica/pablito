@@ -1,30 +1,23 @@
-#### PBS Canvas Tool with modern tooling
+# Pablito
+An HTML 5 drawing tool based largely off existing tools.
 ### by Britannica
 
-This package makes use of [fabricjs-webpack](https://github.com/fabricjs/fabricjs-webpack) and [Canvas-Drawing-Tool](https://github.com/pbs/Canvas-Drawing-Tool). It now uses Webpack 4, and imports, no more scripts in the header. Read-me to be updated soon, tests currently are not working.
-
-# Canvas Drawing Tool
+This package makes use of [fabricjs-webpack](https://github.com/fabricjs/fabricjs-webpack) and [Canvas-Drawing-Tool](https://github.com/pbs/Canvas-Drawing-Tool). It now uses Webpack 4, and imports, no more scripts in the header. This was easier than forking the original tool and updating the tooling.
 
 ## Basic Usage
-To create a stickerbook, you'll first need to include the script on the page:
 
-```html
-<script src="node_modules/pbs-kids-canvas-drawing/dist/stickerbook.dist.js"></script>
+```shell
+npm install --save @britannica/pablito
 ```
+To create a pablito drawing, you'll first need to include the script on the page:
 
-If you'd like, there's also an unminified debug build available too if you need to debug anything:
-
-```html
-<script src="node_modules/pbs-kids-canvas-drawing/dist/stickerbook.combined.js"></script>
-```
-
-Now, create a containing element for the stickerbook and instantiate
-
+In your javascript source import the library into your project:
 ```javascript
-var container = document.getElementById('stickerbook-container');
+import Pablito from '@britannica/pablito';
+const container = document.getElementById('stickerbook-container');
 document.body.appendChild(container);
 
-var stickerBook = new Stickerbook({
+const pablito = new Pablito({
   // The containing element for the stickerbook
   container : container,
 
@@ -104,6 +97,7 @@ var stickerBook = new Stickerbook({
   useDefaultEventHandlers: true
 });
 ```
+
 Note that the canvas fits to fill the containing element, so any height and width rules you've set will apply to the
 canvases inside. We advocate that you use [viewport units](https://drafts.csswg.org/css-values-3/#viewport-relative-lengths)
 to maintain aspect ratio, so that scaling preserves sizes properly. We'll loosen that suggestion as we improve our
@@ -120,10 +114,10 @@ element and then redraw.
 Any operation that was previously done can be undone (or redone) via the `undo` and `redo` method respectively:
 ```javascript
 // do some stuff
-stickerbook.undo();
+pablito.undo();
 
 // oh wait, I wanted to keep that! Give it back!
-stickerbook.redo();
+pablito.redo();
 
 // bloodPressure--;
 ```
@@ -132,30 +126,30 @@ stickerbook.redo();
 Brushes, stickers, and the background can all be set on the fly. Keep in mind that they are validated when set, so if
 you attempt to set a brush/sticker/background that is not enabled, an Error will be thrown. Here's an example:
 ```javascript
-stickerbook.setSticker('some/enabled/sticker.png');
-stickerbook.setBrush('pencil');
-stickerbook.setBrushWidth(10);
-stickerbook.setBackground('some/enabled/bg.png');
+pablito.setSticker('some/enabled/sticker.png');
+pablito.setBrush('pencil');
+pablito.setBrushWidth(10);
+pablito.setBackground('some/enabled/bg.png');
 
 try {
     // this color is not enabled
-    stickerbook.setColor('PapayaWhip');
+    pablito.setColor('PapayaWhip');
 } catch(e) {
     alert('ORLY?');
 }
 ```
-Note that `stickerbook.setSticker` is _ansynchronous_ due to the fact the browser will have to load the image before it
-can add it to the canvas. Therefore, `stickerbook.setSticker` returns a promise that resolves to the stickerbook once
+Note that `pablito.setSticker` is _ansynchronous_ due to the fact the browser will have to load the image before it
+can add it to the canvas. Therefore, `pablito.setSticker` returns a promise that resolves to the pablito once
 the image has loaded.
 
 Along with setting the background, you can remove it too:
 ```javascript
-stickerbook.clearBackground();
+pablito.clearBackground();
 ```
 
 You can also programmatically unselect any UI items with
 ```javascript
-stickerbook.deselectAll();
+pablito.deselectAll();
 ```
 
 #### Configurable Brushes
@@ -167,7 +161,7 @@ It preserves the alpha channel however, so you can use that shape the stamp in a
 usage:
 
 ```javascript
-stickerbook.setBrush('bitmap', {
+pablito.setBrush('bitmap', {
   image: 'pathToSomeImage' // the image to sample
 });
 ```
@@ -178,7 +172,7 @@ However, don't forget to enable this brush!
 The bitmap eraser behaves exactly like the bitmap brush, but works as an eraser instead:
 
 ```javascript
-stickerbook.setBrush('bitmap-eraser', {
+pablito.setBrush('bitmap-eraser', {
   image: 'pathToSomeImage' // the image to sample
 });
 ```
@@ -187,7 +181,7 @@ stickerbook.setBrush('bitmap-eraser', {
 The pattern brush takes an array of images and stamps them as the user drags their mouse/finger across the canvas. Here is an example configuration:
 
 ```javascript
-stickerbook.setBrush('pattern', {
+pablito.setBrush('pattern', {
   images: [
     'image1',
     'image2'
@@ -203,12 +197,12 @@ better to spread the fill algorithm's intermediate work over multiple frames. Th
 
 By default, the fill tool is configured to do all the work on a single frame. For a smaller canvas, or on desktop, this may be sufficient. This is the default behavior:
 ```
-stickerbook.setBrush('fill');
+pablito.setBrush('fill');
 ```
 
 There is, however a way to spread this work over multiple frames. Consider the following configuration:
 ```
-stickerbook.setBrush('fill', {
+pablito.setBrush('fill', {
     isAsync: true,
     stepsPerFrame: 10,
     partialFill: false
@@ -221,7 +215,7 @@ will attempt to fill 10 scanlines per frame (the default if don't provide `steps
 
 Now, consider this other configuration:
 ```
-stickerbook.setBrush('fill', {
+pablito.setBrush('fill', {
     isAsync: true,
     stepsPerFrame: 10,
     partialFill: true
@@ -232,10 +226,10 @@ In this case the fill tool will animate it's progress, and _keep going_ even whe
 be added whenever the algorithm finishes.
 
 ### Exporting
-You can also export the stickerbook to a data url for saving, printing, whatever like so:
+You can also export the pablito to a data url for saving, printing, whatever like so:
 
 ```javascript
-var dataUrl = stickerbook.toDataURL();
+var dataUrl = pablito.toDataURL();
 
 // now, go hog-wild
 // courtesy of http://stackoverflow.com/a/2909070
@@ -248,7 +242,7 @@ popup.print();
 
 The above example will attempt to print the image. You can download and save to camera roll with even less code:
 ```javascript
-window.location.href = stickerbook.toDataURL().replace("image/png", "image/octet-stream");
+window.location.href = pablito.toDataURL().replace("image/png", "image/octet-stream");
 ```
 
 Bear in mind that this the internal `toDataURL()` call we make to the canvas element will fail if any sticker
@@ -256,13 +250,13 @@ placed on the canvas came from a different origin (perhaps a CDN or the like). T
 proper `Access-Control-Allow-Origin` header on the resource to allow it to be used freely by your page.
 
 ## Background Positioning
-The stickerbook provides background positioning methods, so you can adjust how the background looks as your canvas
+The pablito provides background positioning methods, so you can adjust how the background looks as your canvas
 scales and grows. There are three options (currently):
 
 ```javascript
-stickerbook.backgroundManager.setPositioning('default');
-stickerbook.backgroundManager.setPositioning('fit-height');
-stickerbook.backgroundManager.setPositioning('fit-width');
+pablito.backgroundManager.setPositioning('default');
+pablito.backgroundManager.setPositioning('fit-height');
+pablito.backgroundManager.setPositioning('fit-width');
 ```
 
 `default` is the default behavior, and simply positions the image in the top corner with no scaling at all.
@@ -276,9 +270,9 @@ image's position relative to the position of the drawings on the canvas.
 
 ## Events
 
-A stickerbook instance fires events from the underlying Fabric canvas, and you can register custom callbacks to respond to them using the `on` and `off` methods.
+A pablito instance fires events from the underlying Fabric canvas, and you can register custom callbacks to respond to them using the `on` and `off` methods.
 
-If you configure the stickerbook with `useDefaultEventHandlers: true`, it will register built-in event handlers for manipulating stickers with mouse and touch events. With `useDefaultEventHandlers: true`, those handlers won't be registered. See `event-handlers.js` for the source code of the default handlers.
+If you configure the pablito with `useDefaultEventHandlers: true`, it will register built-in event handlers for manipulating stickers with mouse and touch events. With `useDefaultEventHandlers: true`, those handlers won't be registered. See `event-handlers.js` for the source code of the default handlers.
 
 You can register callbacks for the following events:
 
@@ -303,7 +297,7 @@ You can register callbacks for the following events:
 * `'touch:shake'`
 
 ```javascript
-stickerbook.on('touch:longpress', function handleLongPress(evt) {
+pablito.on('touch:longpress', function handleLongPress(evt) {
   // custom logic...
 });
 ```
@@ -313,10 +307,10 @@ You can also de-register event handlers
 const handleLongPress = function (evt) {
   // custom logic...
 };
-stickerbook.on('touch:longpress', handleLongPress);
+pablito.on('touch:longpress', handleLongPress);
 
 // later, we want to remove this handler
-stickerbook.off('touch:longpress', handleLongPress);
+pablito.off('touch:longpress', handleLongPress);
 ```
 
 ## Sticker manipulation
@@ -324,8 +318,8 @@ stickerbook.off('touch:longpress', handleLongPress);
 It's possible to manipulate stickers directly, for example in custom event handlers:
 
 ```javascript
-stickerbook.getTopSticker().setAngle(90);
-stickerbook.triggerRender();
+pablito.getTopSticker().setAngle(90);
+pablito.triggerRender();
 
 ```
 
@@ -340,31 +334,22 @@ Example methods:
 `sticker.setAngle()` (http://fabricjs.com/docs/fabric.Object.html#setAngle)
 `sticker.scale()` (http://fabricjs.com/docs/fabric.Object.html#scale)
 
-If you have called `stickerbook.setSticker` with some url, you can place the image programmatically as well. By calling
-`stickerbook.placeSticker({ x: 0, y: 0 })` you can place an image manually onto the canvas. You can also provide an
+If you have called `pablito.setSticker` with some url, you can place the image programmatically as well. By calling
+`pablito.placeSticker({ x: 0, y: 0 })` you can place an image manually onto the canvas. You can also provide an
 optional `xScale`, `yScale` and `rotation` to place the image in a particular starting layout.
 
 ## Finishing Up
-If you're done with the stickerbook, you can simply call `stickerbook.destroy()` to remove any DOM
-nodes, listeners, memory added by the stickerbook. However, it will *not* remove the container you
-provide. Please note that when you call `destroy`, the stickerbook is no longer usable and any
+If you're done with the pablito, you can simply call `pablito.destroy()` to remove any DOM
+nodes, listeners, memory added by the pablito. However, it will *not* remove the container you
+provide. Please note that when you call `destroy`, the pablito is no longer usable and any
 method call is then considered *undefined behavior*.
 
 ## Building for development
-If you're of a mind to build yourself, you'll need to have `gulp` installed globally (`npm install -g gulp`).
-Then, you can clone the repo and run
-```
-npm install
-gulp build
-```
-to build yourself.
 
-If you'd like to do some development as well, run `gulp` rather than `gulp build` and then open http://localhost:8000/
-in your browser of choice. As you edit files in `src/`, the stickerbook will be rebuilt, but you'll need to refresh
-the page yourself (sorry, no live-reload at the time of writing).
-
-You can also run your own tests with `npm run test`. You can also see the test suite run by opening `test/index.html`
-in a browser after running `gulp build-test`.
+```
+npm start
+```
+Live reloading is available for the package, however the demo will need to be refreshed if you make a change.
 
 ## Final notes
 - As of 3.0.0, we're no longer binding a Promise polyfill to this library to help cut down on library size. If you need
