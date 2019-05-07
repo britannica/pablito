@@ -11,8 +11,16 @@ const mouseDownHandler = function (evt) {
   if(this.state._stickerAdded) {
     return this;
   }
+  
+  const clickPoint = this._canvas.getPointer(evt.e);
+  const stickerImgWidth = this.state.sticker.width;
+  const stickerImgHeight = this.state.sticker.height;
 
-  return this.placeSticker(this._canvas.getPointer(evt.e));
+  // Adjust coordinates of sticker placement on canvas so that the sticker is centered on the click coordinates
+  clickPoint.x -= stickerImgWidth / 2;
+  clickPoint.y -= stickerImgHeight / 2;
+
+  return this.placeSticker(clickPoint);
 };
 
 const mouseUpHandler = function () {
