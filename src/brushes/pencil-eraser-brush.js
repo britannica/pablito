@@ -4,7 +4,7 @@ const util = require('../util');
 /**
  * A pencil brush that erases from the canvas
  */
-const PencilEraserBrush = fabric.util.createClass(fabric.PencilBrush, {
+const PencilEraserBrush = window.fabric.util.createClass(window.fabric.PencilBrush, {
   /**
    * Overriding the base onMouseDown to fix a weird bug I was seeing: The first path didn't render
    * properly because `this.color` was not being set correctly on the first path. Here, I'm just
