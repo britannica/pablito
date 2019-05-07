@@ -99,6 +99,11 @@ document.getElementById('redo').addEventListener('click', function() {
   stickerbook.redo();
 });
 
+// Set sticker mode
+document.getElementById('set-sticker-mode').addEventListener('click', function() {
+  stickerbook.enterStickerMode();
+});
+
 // Wire up clear
 document.getElementById('clear').addEventListener('click', function() {
   stickerbook.clear();

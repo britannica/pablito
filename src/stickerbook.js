@@ -367,6 +367,16 @@ class Pablito {
     });
   }
 
+  enterStickerMode() {
+    this._setState({
+      img: null,
+      _stickerAdded: false,
+      drawing: false,
+    });
+
+    this._canvas.setCursor('move');
+  }
+
   setPan() {
     throw new Error('not yet implemented: Stickerbook.setPan()');
   }
