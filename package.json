@@ -13,9 +13,7 @@
   },
   "dependencies": {
     "ajv": "^6.10.0",
-    "fuzzy-select": "pbs/fuzzy-select.git#2.0.0",
-    "jshint": "^2.10.2",
-    "phantomjs": "^2.1.7"
+    "fuzzy-select": "pbs/fuzzy-select.git#2.0.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.4",
