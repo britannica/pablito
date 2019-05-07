@@ -7,11 +7,11 @@ var forEach = function(array, callback, scope) {
   }
 };
 
-var Stickerbook = window.Stickerbook;
+var Pablito = window.Pablito;
 var host = location.toString();
 
 // initialize stickerbook.
-const stickerbook = new Stickerbook({
+const stickerbook = new Pablito({
   container: document.getElementById('stickerbook_container'),
   stickers: {
     enabled: [host + 'images/coin.svg', host + 'images/playCircle.svg', host + 'images/star.svg'],

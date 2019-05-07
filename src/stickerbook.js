@@ -28,7 +28,7 @@ const schema = {
   'bitmap-eraser': bitmapEraser,
 };
 
-class Stickerbook {
+class Pablito {
   /**
    * Construct new stickerbook
    * @param {Object} config - configuration options (see docs)
@@ -632,4 +632,4 @@ class Stickerbook {
   }
 }
 
-export default Stickerbook;
+export default Pablito;
