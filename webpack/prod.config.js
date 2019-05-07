@@ -10,4 +10,5 @@ module.exports = merge(baseConfig, {
   },
   plugins: [new CleanWebpackPlugin()],
   mode: 'production',
+  library: 'Pablito',
 });
