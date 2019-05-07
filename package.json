@@ -1,7 +1,7 @@
 {
   "name": "@britannica/pablito",
   "description": "An HTML 5 drawing framework",
-  "version": "0.6.2",
+  "version": "0.7.2",
   "main": "./dist/stickerbook.bundle.js",
   "module": "./dist/stickerbook.bundle.js",
   "repository": "https://github.com/britannica/pablito",
