@@ -11,7 +11,7 @@ const mouseDownHandler = function (evt) {
   if(this.state._stickerAdded) {
     return this;
   }
-  
+
   const clickPoint = this._canvas.getPointer(evt.e);
   const stickerImgWidth = this.state.sticker.width;
   const stickerImgHeight = this.state.sticker.height;
@@ -114,7 +114,7 @@ const recordPropertyChange = function (historyManager, fabricEvent) {
   historyManager.pushPropertyChanges(propertyDeltas);
 };
 
-module.exports = {
+export {
   disableSelectabilityHandler: disableSelectabilityHandler,
   mouseDownHandler: mouseDownHandler,
   mouseUpHandler: mouseUpHandler,

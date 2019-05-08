@@ -147,4 +147,4 @@ class BackgroundManager {
   }
 }
 
-module.exports = BackgroundManager;
+export default BackgroundManager;

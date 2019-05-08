@@ -2,7 +2,16 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    main: './src/index',
+    es: './src/index',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        type: 'javascript/esm',
+        exclude: /node_modules/,
+      },
+    ],
   },
   plugins: [new webpack.EnvironmentPlugin(['NODE_ENV'])],
   externals: {

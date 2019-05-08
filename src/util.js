@@ -89,10 +89,10 @@ const precompositeBackground = canvas => {
   return dummyCanvas;
 };
 
-module.exports = {
-  calculateInnerDimensions: calculateInnerDimensions,
-  rgbaToArray: rgbaToArray,
-  arrayToRgba: arrayToRgba,
-  compositeColors: compositeColors,
-  precompositeBackground: precompositeBackground
+export {
+  calculateInnerDimensions,
+  rgbaToArray,
+  arrayToRgba,
+  compositeColors,
+  precompositeBackground,
 };
