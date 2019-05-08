@@ -9,6 +9,14 @@ var now = function() {
 var marks = {};
 var measures = {};
 
+function now() {
+  if (window.performance.now instanceof Function) {
+    return window.performance.now();
+  }
+
+  return Date.now();
+}
+
 function mark(name) {
   marks[name] = now();
 }
@@ -25,8 +33,8 @@ function all() {
 }
 
 export {
+  now,
   mark,
-
   measure,
   all,
 };

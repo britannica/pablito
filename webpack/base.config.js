@@ -10,16 +10,14 @@ module.exports = {
         test: /\.js$/,
         type: 'javascript/esm',
         exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       },
     ],
   },
-  plugins: [new webpack.EnvironmentPlugin(['NODE_ENV'])],
-  externals: {
-    'canvas-prebuilt': 'undefined',
-    canvas: 'undefined',
-    'jsdom/lib/jsdom/utils': JSON.stringify({ Canvas: null }),
-    'jsdom/lib/jsdom/living/generated/utils': JSON.stringify({ implForWrapper: null }),
-    jsdom: 'null',
-    xmldom: JSON.stringify({ DOMParser: null }),
-  }
+  plugins: [new webpack.EnvironmentPlugin(['NODE_ENV'])]
 };

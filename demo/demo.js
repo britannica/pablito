@@ -1,5 +1,5 @@
-import Pablito from '../dist/stickerbook.bundle';
-
+import Pablito from '../src/index';
+// import Pablito from '../src/index';
 // utility forEach method, because nodeLists don't implement forEach
 // in every browser. Based on
 // https://toddmotto.com/ditch-the-array-foreach-call-nodelist-hack/#recommendations
@@ -12,8 +12,7 @@ var forEach = function(array, callback, scope) {
 var host = location.toString();
 
 // initialize stickerbook.
-console.log(Pablito.Pablito);
-const stickerbook = new Pablito.Pablito({
+const stickerbook = new Pablito({
   container: document.getElementById('stickerbook_container'),
   stickers: {
     enabled: [host + 'images/coin.svg', host + 'images/playCircle.svg', host + 'images/star.svg'],

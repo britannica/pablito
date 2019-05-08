@@ -1,5 +1,3 @@
-import fabric from '../deps/fabric';
-import Pablito from './stickerbook';
+// import Pablito from './stickerbook';
 
-export { fabric };
-export { Pablito };
+// export default Pablito;

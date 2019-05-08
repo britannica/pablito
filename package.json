@@ -15,9 +15,12 @@
     "fuzzy-select": "pbs/fuzzy-select.git#2.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.4",
     "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/preset-env": "^7.4.4",
     "@britannica/eslint-config": "^1.2.0",
     "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
     "babel-plugin-macros": "^2.5.0",
     "clean-webpack-plugin": "^2.0.1",
     "eslint": "^5.15.1",
