@@ -1,2 +1,2 @@
-import Pablo from './Pablo';
+import Pablo from './pablo';
 export default Pablo;

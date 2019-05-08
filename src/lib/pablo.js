@@ -44,7 +44,6 @@ const schema = {
 
 class Pablo {
   constructor(config) {
-    console.log("hello, world");
     // assign default to the config, if it's missing
     const configWithDefaults = this._applyDefaultConfigs(config);
 

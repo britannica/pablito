@@ -1,5 +1,5 @@
-const MaskedPath = require('../masked-path');
-const util = require('../util');
+import MaskedPath from '../masked-path';
+import { precompositeBackground } from '../util';
 
 /**
  * A pencil brush that erases from the canvas
@@ -28,9 +28,17 @@ const PencilEraserBrush = window.fabric.util.createClass(window.fabric.PencilBru
 
     // pre-calculate the background pattern
     var background = this.canvas.wrapperEl.previousElementSibling;
-    var precomposited = util.precompositeBackground(background);
+    var precomposited = precompositeBackground(background);
     this.color = this.canvas.contextTop.createPattern(precomposited, 'no-repeat');
   },
+  
+  _reset: function() {
+  this._points.length = 0;
+
+  this._setBrushStyles();
+  this._setShadow();
+},
+
 
   /**
    * An override of the pencil brush's `createPath` method, to that it uses our
