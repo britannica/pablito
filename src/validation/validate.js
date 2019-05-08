@@ -9,7 +9,7 @@ const Ajv = require('ajv');
  * @return {Boolean} true if the object is valid
  * @throws Error An error with validation error messages in it
  */
-module.exports = function (schema, object) {
+export default function (schema, object) {
   const validator = new Ajv();
   const isValid = validator.validate(schema, object);
 

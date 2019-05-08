@@ -78,4 +78,4 @@ const BitmapBrush = fabric.util.createClass(fabric.BaseBrush, {
   }
 });
 
-module.exports = BitmapBrush;
+export default BitmapBrush;

@@ -142,4 +142,4 @@ const FillBrush = window.fabric.util.createClass(window.fabric.BaseBrush, {
   }
 });
 
-module.exports = FillBrush;
+export default FillBrush;

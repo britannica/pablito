@@ -115,9 +115,9 @@ const recordPropertyChange = function (historyManager, fabricEvent) {
 };
 
 export {
-  disableSelectabilityHandler: disableSelectabilityHandler,
-  mouseDownHandler: mouseDownHandler,
-  mouseUpHandler: mouseUpHandler,
-  recordObjectAddition: recordObjectAddition,
-  recordPropertyChange: recordPropertyChange
+  disableSelectabilityHandler,
+  mouseDownHandler,
+  mouseUpHandler,
+  recordObjectAddition,
+  recordPropertyChange
 };

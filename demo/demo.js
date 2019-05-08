@@ -1,4 +1,4 @@
-const Pablito = require('../dist/stickerbook.bundle');
+import Pablito from '../dist/stickerbook.bundle';
 
 // utility forEach method, because nodeLists don't implement forEach
 // in every browser. Based on

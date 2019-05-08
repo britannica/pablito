@@ -203,4 +203,4 @@ const PatternBrush = fabric.util.createClass(fabric.BaseBrush, {
   }
 });
 
-module.exports = PatternBrush;
+export default PatternBrush;

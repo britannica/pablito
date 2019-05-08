@@ -169,4 +169,4 @@ const MarkerBrush = fabric.util.createClass(fabric.PencilBrush, {
 
 });
 
-module.exports = MarkerBrush;
+export default MarkerBrush;

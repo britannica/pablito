@@ -57,4 +57,4 @@ const PencilEraserBrush = window.fabric.util.createClass(window.fabric.PencilBru
   }
 });
 
-module.exports = PencilEraserBrush;
+export default PencilEraserBrush;

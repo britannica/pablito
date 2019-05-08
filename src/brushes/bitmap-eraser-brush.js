@@ -64,4 +64,5 @@ const BitmapEraserBrush = fabric.util.createClass(BitmapBrush, {
   }
 });
 
-module.exports = BitmapEraserBrush;
+export default BitmapEraserBrush;
+
