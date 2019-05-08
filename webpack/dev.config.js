@@ -12,6 +12,6 @@ module.exports = merge(baseConfig, {
   output: {
     path: path.resolve(__dirname, '../demo'),
     filename: './stickerbook.dev.bundle.js',
-    library: 'Pablito',
+    library: 'Pablito'
   },
 });

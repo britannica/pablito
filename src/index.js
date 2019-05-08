@@ -3,4 +3,3 @@ import Pablito from './stickerbook';
 
 export { fabric };
 export { Pablito };
-

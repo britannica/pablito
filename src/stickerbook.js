@@ -27,7 +27,7 @@ const schema = {
   bitmap,
   'bitmap-eraser': bitmapEraser,
 };
-
+console.log("TEST");
 class Pablito {
   /**
    * Construct new stickerbook

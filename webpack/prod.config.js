@@ -7,8 +7,9 @@ module.exports = merge(baseConfig, {
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: 'stickerbook.bundle.js',
+    library: 'Pablito'
   },
   plugins: [new CleanWebpackPlugin()],
   mode: 'production',
-  library: 'Pablito',
+
 });

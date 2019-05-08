@@ -1,3 +1,5 @@
+const Pablito = require('../dist/stickerbook.bundle');
+
 // utility forEach method, because nodeLists don't implement forEach
 // in every browser. Based on
 // https://toddmotto.com/ditch-the-array-foreach-call-nodelist-hack/#recommendations
