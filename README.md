@@ -33,10 +33,13 @@ Why didn't you fork the original project and make pull requests? This is an exce
 
 ## 📦 Getting Started
 Pablito can be installed via NPM or Yarn:
+
 `npm i --save @britannica/pablito`
+
 `yarn add @britannica/pablito`
 
 You must import the library into your code:
+
 `import Pablito from '@britannica/pablito`
 
 Do not forget to import FabricJs using a script tag somewhere in your application we have used [CDNJS](https://cdnjs.com/libraries/fabric.js/) and it has worked well for us:
