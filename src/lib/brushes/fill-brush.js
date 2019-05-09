@@ -1,5 +1,7 @@
 // const {ImageDataColorGrid, FuzzySelector} = require('fuzzy-select');
-import {ImageDataColorGrid, FuzzySelector} from 'fuzzy-select';
+import FuzzySelector from '../fuzzy-select/FuzzySelector';
+import ImageDataColorGrid from '../fuzzy-select/ImageDataColorGrid';
+
 /**
  * A "paint bucket"-style tool that performs flood fill on regions with similar color
  */

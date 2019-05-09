@@ -9,7 +9,7 @@ import bitmapEraser from "./validation/bitmap-brush.json";
 // Brushes
 import BitmapBrush from "./brushes/bitmap-brush";
 import BitmapEraserBrush from "./brushes/bitmap-eraser-brush";
-// import FillBrush from "./brushes/fill-brush";
+import FillBrush from "./brushes/fill-brush";
 import MarkerBrush from "./brushes/marker-brush";
 import PatternBrush from "./brushes/pattern-brush";
 import PencilEraserBrush from "./brushes/pencil-eraser-brush";
@@ -56,7 +56,7 @@ class Pablo {
       pattern: PatternBrush,
       pencil: PencilBrush,
       spray: SprayBrush,
-      // fill: FillBrush,
+      fill: FillBrush,
     };
 
     
