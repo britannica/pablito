@@ -48,7 +48,7 @@ Fabric is a huge library, so we recomend you use the minified build for producti
 Initializing a Pablito instance requires that you pass in a config similar to this one taken from the PBS Canvas-Drawing-Tool documentation.
 
 ```js
-var stickerBook = new Stickerbook({
+var stickerBook = new Pablito({
   // The containing element for the stickerbook
   container : container,
 
