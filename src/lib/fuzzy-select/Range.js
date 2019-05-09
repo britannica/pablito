@@ -17,4 +17,4 @@ Range.prototype.contains = function(value) {
   return value >= this.min && value <= this.max;
 };
 
-module.exports = Range;
+ export default Range;
