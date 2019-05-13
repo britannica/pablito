@@ -1,6 +1,6 @@
 {
   "name": "@britannica/pablito",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "main": "build/index.js",
   "author": "Britannica",
   "scripts": {
@@ -159,7 +159,6 @@
     ]
   },
   "dependencies": {
-    "ajv": "^6.10.0",
-    "fuzzy-select": "^1.0.5"
+    "ajv": "^6.10.0"  
   }
 }
