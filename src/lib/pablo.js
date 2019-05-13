@@ -59,8 +59,6 @@ class Pablo {
       fill: FillBrush,
     };
 
-    
-
     this._validateConfig(configWithDefaults);
 
     // apply any extra available brushes
@@ -245,34 +243,14 @@ class Pablo {
   }
 
   _repositionObjects(originalDimensions, newDimensions) {
-    // var scaleFactor = newDimensions.width / originalDimensions.width;
-    // 
-    // this._canvas.getObjects().forEach((object) => {
-    //   object.setScaleX(object.getScaleX() * scaleFactor);
-    //   object.setScaleY(object.getScaleY() * scaleFactor);
-    //   object.setLeft(object.getLeft() * scaleFactor);
-    //   object.setTop(object.getTop() * scaleFactor);
-    // });
-    const scaleFactor = newDimensions.width / originalDimensions.width;
+    var scaleFactor = newDimensions.width / originalDimensions.width;
     
-    this._canvas.getObjects().forEach(object => {
-      const originalScaleX = object.scaleX;
-      const originalScaleY = object.scaleY;
-      const originalLeft = object.left;
-      const originalTop = object.top;
-    
-      const newScaleX = originalScaleX * scaleFactor;
-      const newScaleY = originalScaleY * scaleFactor;
-      const newLeft = originalLeft * scaleFactor;
-      const newTop = originalTop * scaleFactor;
-    
-      object.scaleX = newScaleX;
-      object.scaleY = newScaleY;
-      object.left = newLeft;
-      object.right = newTop;
-    
-      object.setCoords();
-    });    
+    this._canvas.getObjects().forEach((object) => {
+      object.setScaleX(object.getScaleX() * scaleFactor);
+      object.setScaleY(object.getScaleY() * scaleFactor);
+      object.setLeft(object.getLeft() * scaleFactor);
+      object.setTop(object.getTop() * scaleFactor);
+    });  
   }
 
   /**

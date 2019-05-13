@@ -31,13 +31,6 @@ const PencilEraserBrush = window.fabric.util.createClass(window.fabric.PencilBru
     var precomposited = precompositeBackground(background);
     this.color = this.canvas.contextTop.createPattern(precomposited, 'no-repeat');
   },
-  
-  _reset: function() {
-    this._points.length = 0;
-  
-    this._setBrushStyles();
-    this._setShadow();
-  },
 
   /**
    * An override of the pencil brush's `createPath` method, to that it uses our
@@ -56,8 +49,6 @@ const PencilEraserBrush = window.fabric.util.createClass(window.fabric.PencilBru
       originY: 'center',
       selectable: false,
       stroke: 'black',
-      offsetX: 0,
-      offsetY: 0,
       strokeDashArray: this.strokeDashArray,
       strokeLineCap: this.strokeLineCap,
       strokeLineJoin: this.strokeLineJoin,
