@@ -14,7 +14,7 @@ const PencilEraserBrush = window.fabric.util.createClass(window.fabric.PencilBru
    */
   onMouseDown: function (pointer) {
     this._setBrushStyles();
-
+  
     this.callSuper('onMouseDown', pointer);
   },
 
@@ -33,12 +33,11 @@ const PencilEraserBrush = window.fabric.util.createClass(window.fabric.PencilBru
   },
   
   _reset: function() {
-  this._points.length = 0;
-
-  this._setBrushStyles();
-  this._setShadow();
-},
-
+    this._points.length = 0;
+  
+    this._setBrushStyles();
+    this._setShadow();
+  },
 
   /**
    * An override of the pencil brush's `createPath` method, to that it uses our
@@ -57,6 +56,8 @@ const PencilEraserBrush = window.fabric.util.createClass(window.fabric.PencilBru
       originY: 'center',
       selectable: false,
       stroke: 'black',
+      offsetX: 0,
+      offsetY: 0,
       strokeDashArray: this.strokeDashArray,
       strokeLineCap: this.strokeLineCap,
       strokeLineJoin: this.strokeLineJoin,
