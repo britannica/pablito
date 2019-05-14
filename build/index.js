@@ -1,6 +1,6 @@
 /*!
  * 
- *   @britannica/pablito v0.8.3
+ *   @britannica/pablito v0.8.4
  *   https://github.com/britannica/pablito
  * 
  *   Copyright (c) Britannica
