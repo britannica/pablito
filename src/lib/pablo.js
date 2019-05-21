@@ -2,7 +2,7 @@ import validate from "./validation/validate";
 
 // Import JSON files
 import stickerbook from "./validation/stickerbook.json";
-import pattern from "./validation/bitmap-brush.json";
+import pattern from "./validation/pattern-brush.json";
 import bitmap from "./validation/bitmap-brush.json";
 import bitmapEraser from "./validation/bitmap-brush.json";
 
