@@ -175,7 +175,6 @@ class HistoryManager {
       // process each changeset, then move history forward and re-render
       var promises = this.history[this.historyIndex + 1].map(processChange);
       return Promise.all(promises).then(() => {
-        this.historyIndex++;
         this.canvas.renderAll();
         return this;
       });

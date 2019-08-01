@@ -179,7 +179,7 @@ class Pablo {
    * @returns {Object} Promise, which resolves to the Stickerbook
    */
   redo() {
-    return this.historyManager.redo().then(() => this);
+    return recordObjectAddition(this.historyManager, null, this, true);
   }
 
   /**
