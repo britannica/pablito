@@ -72,14 +72,20 @@ const PatternBrush = window.fabric.util.createClass(window.fabric.BaseBrush, {
   onMouseUp: function () {
     const canvas = this.canvas;
 
-    canvas.renderOnAddRemove = false;
-    const imageGroup = new window.fabric.Group(this.placedImages);
-    this.placedImages.map((img) => {
-      this.canvas.remove(img);
+    // Removed to address: KTWO-54, KTWO-51, KTWO-50, KTWO-46
+    // This code was adding Fabric Groups to the history array in addition to the individual image objects
+    // canvas.renderOnAddRemove = false;
+    // const imageGroup = new window.fabric.Group(this.placedImages);
+    // this.placedImages.map((img) => {
+    //   this.canvas.remove(img);
+    // });
+    // this.canvas.add(imageGroup);
+    // imageGroup.selectable = false;
+    // canvas.renderOnAddRemove = true;
+
+    this.placedImages.map(img => {
+      img.set({ selectable: false });
     });
-    this.canvas.add(imageGroup);
-    imageGroup.selectable = false;
-    canvas.renderOnAddRemove = true;
 
     canvas.clearContext(canvas.contextTop);
     canvas.renderAll();
@@ -90,9 +96,9 @@ const PatternBrush = window.fabric.util.createClass(window.fabric.BaseBrush, {
     this._lastPoint = null;
 
     // hack to avoid double events
-    if (imageGroup._objects.length > 0) {
-      this.canvas.fire('path:created', {path: imageGroup});
-    }
+    // if (imageGroup._objects.length > 0) {
+    //   this.canvas.fire('path:created', {path: imageGroup});
+    // }
   },
 
   /**
