@@ -12,6 +12,7 @@ class HistoryManager {
       this.historyIndex = -1;
       this.canvas = canvas;
       this.objectIdCounter = 1;
+      this.isPerformingRedo = false;
     }
   
     /**
@@ -139,6 +140,8 @@ class HistoryManager {
       if(this.historyIndex >= this.history.length - 1) {
         return Promise.resolve();
       }
+
+      this.isPerformingRedo = true;
   
       // function to redo a single history event
       const processChange = newChange => {
@@ -175,6 +178,8 @@ class HistoryManager {
       // process each changeset, then move history forward and re-render
       var promises = this.history[this.historyIndex + 1].map(processChange);
       return Promise.all(promises).then(() => {
+        this.historyIndex++;
+        this.isPerformingRedo = false;
         this.canvas.renderAll();
         return this;
       });

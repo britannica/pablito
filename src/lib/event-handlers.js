@@ -53,23 +53,17 @@ const mouseDownHandler = function (evt) {
    * @param {Event} fabricEvent An object with a target property, which is a fabric.Object
    * @return {void}
    */
-  const recordObjectAddition = function (historyManager, fabricEvent, stickerbook=null, isRedo=false) {
+  const recordObjectAddition = function (historyManager, fabricEvent) {
     // During a redo, the HistoryManager will automatically perform the canvas.add for us. We don't
     // want to track history for this addition if it's a redo, because it'll cause duplicates in the
     // stack
-
-    if (isRedo) {
-      return historyManager.redo().then(() => stickerbook);
-    }
-
     var serializedTarget = JSON.stringify(fabricEvent.target);
     var objectAlreadyInHistory = historyManager.history
     .reduce((a, b) => a.concat(b), []) // flatten the array
     .filter(historyEvent => historyEvent.type === 'add') // only get add events
     .some(historyEvent => historyEvent.data === serializedTarget); // target is already there?
     
-    if(objectAlreadyInHistory) {
-      historyManager.historyIndex++;
+    if(objectAlreadyInHistory && historyManager.isPerformingRedo) {
       return;
     }
     
