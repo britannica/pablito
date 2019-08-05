@@ -56,7 +56,12 @@ const mouseDownHandler = function (evt) {
   const recordObjectAddition = function (historyManager, fabricEvent) {
     // During a redo, the HistoryManager will automatically perform the canvas.add for us. We don't
     // want to track history for this addition if it's a redo, because it'll cause duplicates in the
-    // stack
+    // stack. This should now be handled by the history manager's isPerformingRedo state.
+    // This function should not fire while a redo is being performed (isPerformingRedo is set to true
+    // when the history manager's redo method is called and is not set back to false until the promises
+    // within the redo method resolve). So whenever an object is added, even if it is the same exact object
+    // that is already in the history array because we now know that it is not a redo, it will push 
+    // new elements to the history array.
     var serializedTarget = JSON.stringify(fabricEvent.target);
     var objectAlreadyInHistory = historyManager.history
     .reduce((a, b) => a.concat(b), []) // flatten the array
