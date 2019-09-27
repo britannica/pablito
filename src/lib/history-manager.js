@@ -6,13 +6,15 @@ class HistoryManager {
     /**
      * Creates a new history manager, with a canvas to monitor
      * @param {fabric.Canvas} canvas The canvas to monitor
+     * @param {Event} historyUpdateEvent Event to signal history update
      */
-    constructor(canvas) {
+    constructor(canvas, historyUpdateEvent) {
       this.history = [];
       this.historyIndex = -1;
       this.canvas = canvas;
       this.objectIdCounter = 1;
       this.isPerformingRedo = false;
+      this.historyUpdateEvent = historyUpdateEvent;
     }
   
     /**
@@ -90,16 +92,16 @@ class HistoryManager {
       if(this.historyIndex === -1) {
         return Promise.resolve(this);
       }
-  
+      
       // un-applies a single change in the history array (add or a delete)
       const processChange = currentChange => {
         return new Promise((resolve, reject) => {
           if(currentChange.type === 'add') {
             // if the change is an add, find the item and remove it
             var oldItemIndex = this.canvas.getObjects()
-              .map(JSON.stringify)
-              .indexOf(currentChange.data);
-  
+            .map(JSON.stringify)
+            .indexOf(currentChange.data);
+            
             if(oldItemIndex > -1) {
               this.canvas.remove(this.canvas.getObjects()[oldItemIndex]);
             }
@@ -108,23 +110,24 @@ class HistoryManager {
             var object = this.canvas.getObjects()[currentChange.data.objectIndex];
             if(object === undefined) {
               var message = 'Attempted to retrieve object ' + currentChange.data.objectIndex
-                + ' but it\'s not there';
+              + ' but it\'s not there';
               reject(new Error(message));
               return;
             }
-  
+            
             object.set(currentChange.data.property, currentChange.data.oldValue);
             object.setCoords();
           }
           resolve(this);
         });
       };
-  
+      
       // process every change in this changeset, then back history up AND re-render
       var promises = this.history[this.historyIndex].map(processChange);
       return Promise.all(promises).then(() => {
         this.historyIndex--;
         this.canvas.renderAll();
+        dispatchEvent(this.historyUpdateEvent);
         return;
       });
     }
@@ -140,9 +143,9 @@ class HistoryManager {
       if(this.historyIndex >= this.history.length - 1) {
         return Promise.resolve();
       }
-
+      
       this.isPerformingRedo = true;
-  
+      
       // function to redo a single history event
       const processChange = newChange => {
         return new Promise((resolve, reject) => {
@@ -163,24 +166,25 @@ class HistoryManager {
             var object = this.canvas.getObjects()[newChange.data.objectIndex];
             if(object === undefined) {
               var message = 'Attempted to retrieve object ' + newChange.data.objectIndex
-                + ' but it\'s not there';
+              + ' but it\'s not there';
               reject(new Error(message));
               return;
             }
-  
+            
             object.set(newChange.data.property, newChange.data.newValue);
             object.setCoords();
             resolve(this);
           }
         });
       };
-  
+      
       // process each changeset, then move history forward and re-render
       var promises = this.history[this.historyIndex + 1].map(processChange);
       return Promise.all(promises).then(() => {
         this.historyIndex++;
         this.isPerformingRedo = false;
         this.canvas.renderAll();
+        dispatchEvent(this.historyUpdateEvent);
         return this;
       });
     }
