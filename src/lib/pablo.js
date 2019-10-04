@@ -393,6 +393,8 @@ class Pablo {
 
   clear() {
     this._canvas.clear();
+    this.historyManager.clearHistory();
+    dispatchEvent(this.historyUpdateEvent);
   }
 
   /**
