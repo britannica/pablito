@@ -23,7 +23,8 @@ const mouseDownHandler = function (evt) {
     return this.placeSticker(clickPoint);
   };
   
-  const mouseUpHandler = function () {
+  const mouseUpHandler = function (historyUpdateEvent) {
+    dispatchEvent(historyUpdateEvent);
     let config = this._config.stickerControls || {};
     let noBorder = config.cornerSize === 0 || !config.hasBorders;
     if(this.state._stickerAdded && this.state.sticker.active && noBorder) {

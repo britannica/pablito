@@ -86,9 +86,10 @@ class Pablo {
     // fabric requires us to explicitly set and manage height and width.
     // (http://stackoverflow.com/questions/10581460)
 
+    this.historyUpdateEvent = new Event('pablito-history');
     this._canvas = this._initializeFabricCanvas(this.containerElement);
 
-    this.historyManager = new HistoryManager(this._canvas);
+    this.historyManager = new HistoryManager(this._canvas, this.historyUpdateEvent);
     this._canvas.on('object:added', event => recordObjectAddition(this.historyManager, event));
     this._canvas.on('object:modified', event => recordPropertyChange(this.historyManager, event));
 
@@ -152,7 +153,7 @@ class Pablo {
     // more opinionated handlers, these can be deactivated by implementors
     if (this._config.useDefaultEventHandlers) {
       canvas.on('mouse:down', mouseDownHandler.bind(this));
-      canvas.on('mouse:up', mouseUpHandler.bind(this));
+      canvas.on('mouse:up', mouseUpHandler.bind(this, this.historyUpdateEvent));
     }
 
     // listen for objects to be added, so we can disable things from being selectable
@@ -392,6 +393,8 @@ class Pablo {
 
   clear() {
     this._canvas.clear();
+    this.historyManager.clearHistory();
+    dispatchEvent(this.historyUpdateEvent);
   }
 
   /**
