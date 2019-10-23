@@ -38,9 +38,9 @@ class HistoryManager {
     if (this.historyIndex < this.history.length - 1) {
       this.history = this.history.slice(0, this.historyIndex + 1);
     }
-
+    
     fabricObject.stickerbookObjectId = this.objectIdCounter;
-
+    
     this.history.push([
       {
         type: "add",
@@ -50,6 +50,7 @@ class HistoryManager {
     ]);
     this.historyIndex++;
     this.objectIdCounter++;
+    dispatchEvent(this.historyUpdateEvent);
   }
 
   /**
@@ -96,6 +97,7 @@ class HistoryManager {
     });
     this.history.push(historyEvents);
     this.historyIndex++;
+    dispatchEvent(this.historyUpdateEvent);
   }
 
   /**
