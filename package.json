@@ -1,6 +1,6 @@
 {
   "name": "@britannica/pablito",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "main": "build/index.js",
   "author": "Britannica",
   "scripts": {
